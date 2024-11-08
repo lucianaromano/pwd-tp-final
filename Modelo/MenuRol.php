@@ -1,7 +1,7 @@
 <?php
-class UsuarioRol extends BaseDatos
+class MenuRol extends BaseDatos
 {
-    private $objusuario;
+    private $objMenu;
     private $objrol;
 
 
@@ -11,28 +11,28 @@ class UsuarioRol extends BaseDatos
     public function __construct()
     {
         parent::__construct();
-        $this->objusuario = new Usuario();
+        $this->objMenu = new Menu();
         $this->objrol = new Rol();
     }
-    public function setear($objusuario, $objrol)
+    public function setear($objMenu, $objrol)
     {
-        $this->setobjusuario($objusuario);
+        $this->setobjMenu($objMenu);
         $this->setobjrol($objrol);
     }
 
-    public function setearConClave($idusuario, $idjrol)
+    public function setearConClave($idmenu, $idjrol)
     {
         $this->getobjrol()->setidrol($idjrol);
-        $this->getobjusuario()->setidusuario($idusuario);
+        $this->getobjMenu()->setIdmenu($idmenu);
     }
 
-    public function getobjusuario()
+    public function getobjMenu()
     {
-        return $this->objusuario;
+        return $this->objMenu;
     }
-    public function setobjusuario($objusuario)
+    public function setobjMenu($objMenu)
     {
-        $this->objusuario = $objusuario;
+        $this->objMenu = $objMenu;
     }
     public function getobjrol()
     {
@@ -54,15 +54,15 @@ class UsuarioRol extends BaseDatos
     public function cargar()
     {
         $resp = false;
-        $sql = "SELECT * FROM usuariorol WHERE idrol = " . $this->getobjrol()->getidrol() . " AND idusuario = " . $this->getobjusuario()->getidusuario() . ";";
+        $sql = "SELECT * FROM menurol WHERE idrol = " . $this->getobjrol()->getidrol() . " AND idmenu = " . $this->getobjMenu()->getidmenu() . ";";
         if ($this->Iniciar()) {
             $res = $this->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
                     $row = $this->Registro();
 
-                    $obj1 = new Usuario();
-                    $obj1->setidusuario($row['idusuario']);
+                    $obj1 = new Menu();
+                    $obj1->setIdmenu($row['idmenu']);
                     $obj1->cargar();
                     $obj2 = new Rol();
                     $obj2->setidrol($row['idrol']);
@@ -71,7 +71,7 @@ class UsuarioRol extends BaseDatos
                 }
             }
         } else {
-            $this->setmensajeoperacion("usuariorol->listar: " . $this->getError());
+            $this->setmensajeoperacion("menurol->listar: " . $this->getError());
         }
         return $resp;
     }
@@ -79,15 +79,15 @@ class UsuarioRol extends BaseDatos
     public function insertar()
     {
         $resp = false;
-        $sql = "INSERT INTO usuariorol(idrol,idusuario)  VALUES(" . $this->getobjrol()->getidrol() . "," . $this->getobjusuario()->getidusuario() . ");";
+        $sql = "INSERT INTO menurol(idrol,idmenu)  VALUES(" . $this->getobjrol()->getidrol() . "," . $this->getobjMenu()->getIdmenu() . ");";
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql)) {
                 $resp = true;
             } else {
-                $this->setmensajeoperacion("usuariorol->insertar: " . $this->getError());
+                $this->setmensajeoperacion("menurol->insertar: " . $this->getError());
             }
         } else {
-            $this->setmensajeoperacion("usuariorol->insertar: " . $this->getError());
+            $this->setmensajeoperacion("menurol->insertar: " . $this->getError());
         }
         return $resp;
     }
@@ -103,15 +103,15 @@ class UsuarioRol extends BaseDatos
     public function eliminar()
     {
         $resp = false;
-        $sql = "DELETE FROM usuariorol WHERE idrol=" . $this->getobjrol()->getidrol() . " AND idusuario =" . $this->getobjusuario()->getidusuario() . ";";
-        if ($this->Iniciar()) {
+        $sql = "DELETE FROM menurol WHERE idrol=" . $this->getobjrol()->getidrol() . " AND idmenu =" . $this->getobjMenu()->getidmenu() . ";";
+        if ($this->Iniciar()) {    
             if ($this->Ejecutar($sql)) {
                 return true;
             } else {
-                $this->setmensajeoperacion("usuariorol->eliminar: " . $this->getError());
+                $this->setmensajeoperacion("menurol->eliminar: " . $this->getError());
             }
         } else {
-            $this->setmensajeoperacion("usuariorol->eliminar: " . $this->getError());
+            $this->setmensajeoperacion("menurol->eliminar: " . $this->getError());
         }
         return $resp;
     }
@@ -119,25 +119,25 @@ class UsuarioRol extends BaseDatos
     public function listar($parametro = "")
     {
         $arreglo = array();
-        $sql = "SELECT * FROM usuariorol ";
+        $sql = "SELECT * FROM menurol ";
         if ($parametro != "") {
             $sql .= 'WHERE ' . $parametro;
         }
-        if ($this->Iniciar()) {
+        if ($this->Iniciar()) {       
             $res = $this->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
                     while ($row = $this->Registro()) {
-                        $obj = new UsuarioRol();
+                        $obj = new MenuRol();
 
-                        $obj->getobjusuario()->setidusuario($row['idusuario']);
+                        $obj->getobjMenu()->setIdmenu($row['idmenu']);
                         $obj->getobjrol()->setidrol($row['idrol']);
                         $obj->cargar();
                         array_push($arreglo, $obj);
                     }
                 }
             } else {
-                $this->setmensajeoperacion("usuariorol->listar: " . $this->getError());
+                $this->setmensajeoperacion("menurol->listar: " . $this->getError());
             }
         }
         return $arreglo;

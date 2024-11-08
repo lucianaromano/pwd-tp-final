@@ -126,7 +126,6 @@ class Usuario extends BaseDatos
         $sql = "UPDATE usuarios SET usnombre='" . $this->getusnombre() . "' ,uspass='" . $this->getuspass() . "',usmail='" . $this->getusmail() . "' ,usdeshabilitado='" . $this->getusdeshabilitado() . "'  " .
             " WHERE idusuario=" . $this->getidusuario();
         if ($this->Iniciar()) {
-            //echo $sql;
             if ($this->Ejecutar($sql)) {
                 $resp = true;
             } else {
@@ -160,8 +159,7 @@ class Usuario extends BaseDatos
         if ($parametro != "") {
             $sql .= 'WHERE ' . $parametro;
         }
-        if ($this->Iniciar()) {
-            //echo $sql;
+        if ($this->Iniciar()) {   
             $res = $this->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {

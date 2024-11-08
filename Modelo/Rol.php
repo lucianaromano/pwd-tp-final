@@ -51,7 +51,6 @@ class Rol extends BaseDatos
         $resp = false;
         $sql = "SELECT * FROM rol WHERE idrol = " . $this->getidrol();
         if ($this->Iniciar()) {
-            //echo $sql;
             $res = $this->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
@@ -69,7 +68,6 @@ class Rol extends BaseDatos
     {
         $resp = false;
         $sql = "INSERT INTO rol(rodescripcion)  VALUES('" . $this->getrodescripcion() . "');";
-        //echo $sql;
         if ($this->Iniciar()) {
             if ($elid = $this->Ejecutar($sql)) {
                 $this->setidrol($elid);
@@ -108,7 +106,6 @@ class Rol extends BaseDatos
         $resp = false;
         $sql = "DELETE FROM rol WHERE idrol=" . $this->getidrol();
         if ($this->Iniciar()) {
-            //echo $sql;
             if ($this->Ejecutar($sql) > 0) {
                 $resp =  true;
             } else {
@@ -129,7 +126,6 @@ class Rol extends BaseDatos
             $sql .= 'WHERE ' . $parametro;
         }
         if ($this->Iniciar()) {
-            //echo $sql;
             $res = $this->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
