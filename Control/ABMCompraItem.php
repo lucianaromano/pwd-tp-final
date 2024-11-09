@@ -25,7 +25,7 @@ class ABMCompraItem
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
      * @param array $param
-     * @return Compra
+     * @return CompraItem
      */
     private function cargarObjeto($param)
     {
@@ -49,7 +49,7 @@ class ABMCompraItem
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
      * @param array $param
-     * @return Producto
+     * @return CompraItem
      */
 
     private function cargarObjetoConClave($param)

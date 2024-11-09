@@ -27,7 +27,7 @@ class ABMRol
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
      * @param array $param
-     * @return Tabla
+     * @return Rol
      */
     private function cargarObjeto($param)
     {
@@ -44,7 +44,7 @@ class ABMRol
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
      * @param array $param
-     * @return Tabla
+     * @return Rol
      */
 
     private function cargarObjetoConClave($param)
