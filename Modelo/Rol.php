@@ -1,5 +1,5 @@
 <?php
-class Rol extends BaseDatos
+class Rol
 {
     private $idrol;
     private $rodescripcion;
@@ -10,7 +10,6 @@ class Rol extends BaseDatos
 
     public function __construct()
     {
-        parent::__construct();
         $this->idrol = "";
         $this->rodescripcion = "";
     }
@@ -49,17 +48,18 @@ class Rol extends BaseDatos
     public function cargar()
     {
         $resp = false;
+        $db = new BaseDatos();
         $sql = "SELECT * FROM rol WHERE idrol = " . $this->getidrol();
-        if ($this->Iniciar()) {
-            $res = $this->Ejecutar($sql);
+        if ($db->Iniciar()) {
+            $res = $db->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
-                    $row = $this->Registro();
+                    $row = $db->Registro();
                     $this->setear($row['idrol'], $row['rodescripcion']);
                 }
             }
         } else {
-            $this->setmensajeoperacion("rol->listar: " . $this->getError());
+            $this->setmensajeoperacion("rol->listar: " . $db->getError());
         }
         return $resp;
     }
@@ -67,16 +67,17 @@ class Rol extends BaseDatos
     public function insertar()
     {
         $resp = false;
+        $db = new BaseDatos();
         $sql = "INSERT INTO rol(rodescripcion)  VALUES('" . $this->getrodescripcion() . "');";
-        if ($this->Iniciar()) {
-            if ($elid = $this->Ejecutar($sql)) {
+        if ($db->Iniciar()) {
+            if ($elid = $db->Ejecutar($sql)) {
                 $this->setidrol($elid);
                 $resp = true;
             } else {
-                $this->setmensajeoperacion("rol->insertar: " . $this->getError());
+                $this->setmensajeoperacion("rol->insertar: " . $db->getError());
             }
         } else {
-            $this->setmensajeoperacion("rol->insertar: " . $this->getError());
+            $this->setmensajeoperacion("rol->insertar: " . $db->getError());
         }
         return $resp;
     }
@@ -85,16 +86,17 @@ class Rol extends BaseDatos
     public function modificar()
     {
         $resp = false;
+        $db = new BaseDatos();
         $sql = "UPDATE rol SET rodescripcion='" . $this->getrodescripcion() . "' " .
             " WHERE idrol=" . $this->getidrol();
-        if ($this->Iniciar()) {
-            if ($this->Ejecutar($sql)) {
+        if ($db->Iniciar()) {
+            if ($db->Ejecutar($sql)) {
                 $resp = true;
             } else {
-                $this->setmensajeoperacion("rol->modificar: " . $this->getError());
+                $this->setmensajeoperacion("rol->modificar: " . $db->getError());
             }
         } else {
-            $this->setmensajeoperacion("rol->modificar: " . $this->getError());
+            $this->setmensajeoperacion("rol->modificar: " . $db->getError());
         }
         return $resp;
     }
@@ -104,16 +106,17 @@ class Rol extends BaseDatos
     public function eliminar()
     {
         $resp = false;
+        $db = new BaseDatos();
         $sql = "DELETE FROM rol WHERE idrol=" . $this->getidrol();
-        if ($this->Iniciar()) {
-            if ($this->Ejecutar($sql) > 0) {
+        if ($db->Iniciar()) {
+            if ($db->Ejecutar($sql) > 0) {
                 $resp =  true;
             } else {
 
-                $this->setmensajeoperacion("rol->eliminar: " . $this->getError());
+                $this->setmensajeoperacion("rol->eliminar: " . $db->getError());
             }
         } else {
-            $this->setmensajeoperacion("rol->eliminar: " . $this->getError());
+            $this->setmensajeoperacion("rol->eliminar: " . $db->getError());
         }
         return $resp;
     }
@@ -121,15 +124,16 @@ class Rol extends BaseDatos
     public function listar($parametro = "")
     {
         $arreglo = array();
+        $db = new BaseDatos();
         $sql = "SELECT * FROM rol ";
         if ($parametro != "") {
             $sql .= 'WHERE ' . $parametro;
         }
-        if ($this->Iniciar()) {
-            $res = $this->Ejecutar($sql);
+        if ($db->Iniciar()) {
+            $res = $db->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
-                    while ($row = $this->Registro()) {
+                    while ($row = $db->Registro()) {
                         $obj = new Rol();
                         //print_r($row);
                         $obj->setidrol($row['idrol']);
@@ -138,7 +142,7 @@ class Rol extends BaseDatos
                     }
                 }
             } else {
-                $this->setmensajeoperacion("rol->listar: " . $this->getError());
+                $this->setmensajeoperacion("rol->listar: " . $db->getError());
             }
         }
         return $arreglo;

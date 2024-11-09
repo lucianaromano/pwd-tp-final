@@ -76,7 +76,6 @@ class Compra
                     if ($row['idusuario'] != null or $row['idusuario'] != '') {
                         $objMenuPadre = new Usuario();
                         $objMenuPadre->setidusuario($row['idusuario']);
-                        $objMenuPadre->cargar();
                     }
                     $this->setear($row['idcompra'], $row['cofecha'], $objMenuPadre);
                 }
@@ -176,7 +175,6 @@ class Compra
                     if ($row['idcompra'] != null) {
                         $objMenuPadre = new Usuario();
                         $objMenuPadre->setidusuario($row['idusuario']);
-                        $objMenuPadre->cargar();
                     }
                     $obj->setear($row['idcompra'], $row['cofecha'], $objMenuPadre);
                     array_push($arreglo, $obj);

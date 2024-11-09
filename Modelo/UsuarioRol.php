@@ -1,5 +1,5 @@
 <?php
-class UsuarioRol extends BaseDatos
+class UsuarioRol
 {
     private $objusuario;
     private $objrol;
@@ -10,7 +10,6 @@ class UsuarioRol extends BaseDatos
 
     public function __construct()
     {
-        parent::__construct();
         $this->objusuario = new Usuario();
         $this->objrol = new Rol();
     }
@@ -54,12 +53,13 @@ class UsuarioRol extends BaseDatos
     public function cargar()
     {
         $resp = false;
+        $db = new BaseDatos();
         $sql = "SELECT * FROM usuariorol WHERE idrol = " . $this->getobjrol()->getidrol() . " AND idusuario = " . $this->getobjusuario()->getidusuario() . ";";
-        if ($this->Iniciar()) {
-            $res = $this->Ejecutar($sql);
+        if ($db->Iniciar()) {
+            $res = $db->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
-                    $row = $this->Registro();
+                    $row = $db->Registro();
 
                     $obj1 = new Usuario();
                     $obj1->setidusuario($row['idusuario']);
@@ -71,7 +71,7 @@ class UsuarioRol extends BaseDatos
                 }
             }
         } else {
-            $this->setmensajeoperacion("usuariorol->listar: " . $this->getError());
+            $this->setmensajeoperacion("usuariorol->listar: " . $db->getError());
         }
         return $resp;
     }
@@ -79,15 +79,16 @@ class UsuarioRol extends BaseDatos
     public function insertar()
     {
         $resp = false;
+        $db = new BaseDatos();
         $sql = "INSERT INTO usuariorol(idrol,idusuario)  VALUES(" . $this->getobjrol()->getidrol() . "," . $this->getobjusuario()->getidusuario() . ");";
-        if ($this->Iniciar()) {
-            if ($this->Ejecutar($sql)) {
+        if ($db->Iniciar()) {
+            if ($db->Ejecutar($sql)) {
                 $resp = true;
             } else {
-                $this->setmensajeoperacion("usuariorol->insertar: " . $this->getError());
+                $this->setmensajeoperacion("usuariorol->insertar: " . $db->getError());
             }
         } else {
-            $this->setmensajeoperacion("usuariorol->insertar: " . $this->getError());
+            $this->setmensajeoperacion("usuariorol->insertar: " . $db->getError());
         }
         return $resp;
     }
@@ -103,15 +104,16 @@ class UsuarioRol extends BaseDatos
     public function eliminar()
     {
         $resp = false;
+        $db = new BaseDatos();
         $sql = "DELETE FROM usuariorol WHERE idrol=" . $this->getobjrol()->getidrol() . " AND idusuario =" . $this->getobjusuario()->getidusuario() . ";";
-        if ($this->Iniciar()) {
-            if ($this->Ejecutar($sql)) {
+        if ($db->Iniciar()) {
+            if ($db->Ejecutar($sql)) {
                 return true;
             } else {
-                $this->setmensajeoperacion("usuariorol->eliminar: " . $this->getError());
+                $this->setmensajeoperacion("usuariorol->eliminar: " . $db->getError());
             }
         } else {
-            $this->setmensajeoperacion("usuariorol->eliminar: " . $this->getError());
+            $this->setmensajeoperacion("usuariorol->eliminar: " . $db->getError());
         }
         return $resp;
     }
@@ -119,15 +121,16 @@ class UsuarioRol extends BaseDatos
     public function listar($parametro = "")
     {
         $arreglo = array();
+        $db = new BaseDatos();
         $sql = "SELECT * FROM usuariorol ";
         if ($parametro != "") {
             $sql .= 'WHERE ' . $parametro;
         }
-        if ($this->Iniciar()) {
-            $res = $this->Ejecutar($sql);
+        if ($db->Iniciar()) {
+            $res = $db->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
-                    while ($row = $this->Registro()) {
+                    while ($row = $db->Registro()) {
                         $obj = new UsuarioRol();
 
                         $obj->getobjusuario()->setidusuario($row['idusuario']);
@@ -137,7 +140,7 @@ class UsuarioRol extends BaseDatos
                     }
                 }
             } else {
-                $this->setmensajeoperacion("usuariorol->listar: " . $this->getError());
+                $this->setmensajeoperacion("usuariorol->listar: " . $db->getError());
             }
         }
         return $arreglo;

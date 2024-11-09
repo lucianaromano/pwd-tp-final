@@ -1,16 +1,14 @@
 <?php
-class MenuRol extends BaseDatos
+class MenuRol
 {
     private $objMenu;
     private $objrol;
-
 
     private $mensajeoperacion;
 
 
     public function __construct()
     {
-        parent::__construct();
         $this->objMenu = new Menu();
         $this->objrol = new Rol();
     }
@@ -54,12 +52,13 @@ class MenuRol extends BaseDatos
     public function cargar()
     {
         $resp = false;
+        $db = new BaseDatos();
         $sql = "SELECT * FROM menurol WHERE idrol = " . $this->getobjrol()->getidrol() . " AND idmenu = " . $this->getobjMenu()->getidmenu() . ";";
-        if ($this->Iniciar()) {
-            $res = $this->Ejecutar($sql);
+        if ($db->Iniciar()) {
+            $res = $db->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
-                    $row = $this->Registro();
+                    $row = $db->Registro();
 
                     $obj1 = new Menu();
                     $obj1->setIdmenu($row['idmenu']);
@@ -71,7 +70,7 @@ class MenuRol extends BaseDatos
                 }
             }
         } else {
-            $this->setmensajeoperacion("menurol->listar: " . $this->getError());
+            $this->setmensajeoperacion("menurol->listar: " . $db->getError());
         }
         return $resp;
     }
@@ -79,15 +78,16 @@ class MenuRol extends BaseDatos
     public function insertar()
     {
         $resp = false;
+        $db = new BaseDatos();
         $sql = "INSERT INTO menurol(idrol,idmenu)  VALUES(" . $this->getobjrol()->getidrol() . "," . $this->getobjMenu()->getIdmenu() . ");";
-        if ($this->Iniciar()) {
-            if ($this->Ejecutar($sql)) {
+        if ($db->Iniciar()) {
+            if ($db->Ejecutar($sql)) {
                 $resp = true;
             } else {
-                $this->setmensajeoperacion("menurol->insertar: " . $this->getError());
+                $this->setmensajeoperacion("menurol->insertar: " . $db->getError());
             }
         } else {
-            $this->setmensajeoperacion("menurol->insertar: " . $this->getError());
+            $this->setmensajeoperacion("menurol->insertar: " . $db->getError());
         }
         return $resp;
     }
@@ -103,15 +103,16 @@ class MenuRol extends BaseDatos
     public function eliminar()
     {
         $resp = false;
+        $db = new BaseDatos();
         $sql = "DELETE FROM menurol WHERE idrol=" . $this->getobjrol()->getidrol() . " AND idmenu =" . $this->getobjMenu()->getidmenu() . ";";
-        if ($this->Iniciar()) {    
-            if ($this->Ejecutar($sql)) {
+        if ($db->Iniciar()) {    
+            if ($db->Ejecutar($sql)) {
                 return true;
             } else {
-                $this->setmensajeoperacion("menurol->eliminar: " . $this->getError());
+                $this->setmensajeoperacion("menurol->eliminar: " . $db->getError());
             }
         } else {
-            $this->setmensajeoperacion("menurol->eliminar: " . $this->getError());
+            $this->setmensajeoperacion("menurol->eliminar: " . $db->getError());
         }
         return $resp;
     }
@@ -119,15 +120,16 @@ class MenuRol extends BaseDatos
     public function listar($parametro = "")
     {
         $arreglo = array();
+        $db = new BaseDatos();
         $sql = "SELECT * FROM menurol ";
         if ($parametro != "") {
             $sql .= 'WHERE ' . $parametro;
         }
-        if ($this->Iniciar()) {       
-            $res = $this->Ejecutar($sql);
+        if ($db->Iniciar()) {       
+            $res = $db->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
-                    while ($row = $this->Registro()) {
+                    while ($row = $db->Registro()) {
                         $obj = new MenuRol();
 
                         $obj->getobjMenu()->setIdmenu($row['idmenu']);
@@ -137,7 +139,7 @@ class MenuRol extends BaseDatos
                     }
                 }
             } else {
-                $this->setmensajeoperacion("menurol->listar: " . $this->getError());
+                $this->setmensajeoperacion("menurol->listar: " . $db->getError());
             }
         }
         return $arreglo;
