@@ -87,7 +87,7 @@ class Usuario extends BaseDatos
     public function cargar()
     {
         $resp = false;
-        $sql = "SELECT * FROM usuarios WHERE idusuario = " . $this->getidusuario();
+        $sql = "SELECT * FROM usuario WHERE idusuario = " . $this->getidusuario();
         if ($this->Iniciar()) {
             $res = $this->Ejecutar($sql);
             if ($res > -1) {
@@ -105,7 +105,7 @@ class Usuario extends BaseDatos
     public function insertar()
     {
         $resp = false;
-        $sql = "INSERT INTO usuarios(usnombre,uspass,usmail,usdeshabilitado)  VALUES('" . $this->getusnombre() . "','" . $this->getuspass() . "','" . $this->getusmail() . "','0000-00-00 00:00:00');";
+        $sql = "INSERT INTO usuario(usnombre,uspass,usmail,usdeshabilitado)  VALUES('" . $this->getusnombre() . "','" . $this->getuspass() . "','" . $this->getusmail() . "','0000-00-00 00:00:00');";
         if ($this->Iniciar()) {
             if ($elid = $this->Ejecutar($sql)) {
                 $this->setidusuario($elid);
@@ -123,7 +123,7 @@ class Usuario extends BaseDatos
     public function modificar()
     {
         $resp = false;
-        $sql = "UPDATE usuarios SET usnombre='" . $this->getusnombre() . "' ,uspass='" . $this->getuspass() . "',usmail='" . $this->getusmail() . "' ,usdeshabilitado='" . $this->getusdeshabilitado() . "'  " .
+        $sql = "UPDATE usuario SET usnombre='" . $this->getusnombre() . "' ,uspass='" . $this->getuspass() . "',usmail='" . $this->getusmail() . "' ,usdeshabilitado='" . $this->getusdeshabilitado() . "'  " .
             " WHERE idusuario=" . $this->getidusuario();
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql)) {
@@ -139,7 +139,7 @@ class Usuario extends BaseDatos
     public function eliminar()
     {
         $resp = false;
-        $sql = "DELETE FROM usuarios WHERE idusuario=" . $this->getidusuario();
+        $sql = "DELETE FROM usuario WHERE idusuario=" . $this->getidusuario();
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql)) {
                 return true;
@@ -155,7 +155,7 @@ class Usuario extends BaseDatos
     public function listar($parametro = "")
     {
         $arreglo = array();
-        $sql = "SELECT * FROM usuarios ";
+        $sql = "SELECT * FROM usuario ";
         if ($parametro != "") {
             $sql .= 'WHERE ' . $parametro;
         }
