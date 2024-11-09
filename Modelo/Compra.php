@@ -72,12 +72,12 @@ class Compra
             if ($res > -1) {
                 if ($res > 0) {
                     $row = $base->Registro();
-                    $objMenuPadre = null;
+                    $objusuario = null;
                     if ($row['idusuario'] != null or $row['idusuario'] != '') {
-                        $objMenuPadre = new Usuario();
-                        $objMenuPadre->setidusuario($row['idusuario']);
+                        $objusuario = new Usuario();
+                        $objusuario->setidusuario($row['idusuario']);
                     }
-                    $this->setear($row['idcompra'], $row['cofecha'], $objMenuPadre);
+                    $this->setear($row['idcompra'], $row['cofecha'], $objusuario);
                 }
             }
         } else {
@@ -171,12 +171,12 @@ class Compra
 
                 while ($row = $base->Registro()) {
                     $obj = new Compra();
-                    $objMenuPadre = null;
+                    $objusuario = null;
                     if ($row['idcompra'] != null) {
-                        $objMenuPadre = new Usuario();
-                        $objMenuPadre->setidusuario($row['idusuario']);
+                        $objusuario = new Usuario();
+                        $objusuario->setidusuario($row['idusuario']);
                     }
-                    $obj->setear($row['idcompra'], $row['cofecha'], $objMenuPadre);
+                    $obj->setear($row['idcompra'], $row['cofecha'], $objusuario);
                     array_push($arreglo, $obj);
                 }
             }

@@ -141,10 +141,10 @@ class CompraItem
             if ($db->Ejecutar($sql)) {
                 $resp = true;
             } else {
-                $this->setmensajeoperacion("Menu->modificar 1: " . $db->getError());
+                $this->setmensajeoperacion("compraitem->modificar 1: " . $db->getError());
             }
         } else {
-            $this->setmensajeoperacion("Menu->modificar 2: " . $db->getError());
+            $this->setmensajeoperacion("compraitem->modificar 2: " . $db->getError());
         }
         return $resp;
     }
