@@ -120,6 +120,7 @@ class BaseDatos extends PDO
 
     private function EjecutarInsert($sql)
     {
+        $id = -1;
         try {
             $resultado = parent::query($sql);
 

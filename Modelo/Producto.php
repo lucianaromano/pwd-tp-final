@@ -90,7 +90,7 @@ class Producto extends BaseDatos
     public function insertar()
     {
         $resp = false;
-        $sql = "INSERT INTO producto(pronombre,prodetalle,procantstock)  VALUES('" . $this->getusnombre() . "','" . $this->getprodetalle() . "','" . $this->getprocantstock() . ");";
+        $sql = "INSERT INTO producto(pronombre,prodetalle,procantstock)  VALUES('" . $this->getusnombre() . "','" . $this->getprodetalle() . "','" . $this->getprocantstock() . "');";
         if ($this->Iniciar()) {
             if ($elid = $this->Ejecutar($sql)) {
                 $this->setidproducto($elid);
@@ -108,8 +108,8 @@ class Producto extends BaseDatos
     public function modificar()
     {
         $resp = false;
-        $sql = "UPDATE producto SET pronombre='" . $this->getusnombre() . "' ,prodetalle='" . $this->getprodetalle() . "',procantstock='" . $this->getprocantstock() .
-            " WHERE idproducto=" . $this->getidproducto();
+        $sql = "UPDATE producto SET pronombre='" . $this->getusnombre() . "' ,prodetalle='" . $this->getprodetalle() . "',procantstock='" . $this->getprocantstock() . "'"
+           . " WHERE idproducto=" . $this->getidproducto();
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql)) {
                 $resp = true;

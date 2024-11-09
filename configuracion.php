@@ -4,6 +4,7 @@
 /////////////////////////////
 
 //variable que almacena el directorio del proyecto
-$GLOBALS['ROOT'] = $_SERVER['DOCUMENT_ROOT'] . "/PWD/TP-Librerias/";
+$carpetaDelProyecto = 'pwd-tp-final';
+$GLOBALS['ROOT'] = $_SERVER['DOCUMENT_ROOT'] . "/" . $carpetaDelProyecto. "/";
 
 include_once('util/funciones.php');
