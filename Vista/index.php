@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <?php include_once("./estructura/cabecera-usuario.php") ?> 
+    <?php include_once("./estructura/cabecera-publica.php") ?> 
 
     <h1>Pagina pública</h1>
     <p>Esta es la página principal de la tienda de anillos</p>

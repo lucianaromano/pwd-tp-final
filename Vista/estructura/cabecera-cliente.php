@@ -6,6 +6,8 @@ if (!$resp) {
     header("Location: $PROJECT_PATH/vista/login");
 }
 
+// TODO: verificar que el usuario tenga el rol de cliente
+
 ?>
 <header>
     <h1>Anillos</h1>
