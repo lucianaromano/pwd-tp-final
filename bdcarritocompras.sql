@@ -143,6 +143,8 @@ CREATE TABLE `rol` (
   `rodescripcion` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO rol (idrol, rodescripcion)
+VALUES (1, 'cliente'), (2, 'deposito'),(3, 'admin');
 -- --------------------------------------------------------
 
 --
@@ -157,6 +159,11 @@ CREATE TABLE `usuario` (
   `usdeshabilitado` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO usuario ( idusuario, usnombre, uspass, usmail, usdeshabilitado)
+VALUES
+    (1, 'Luciana1', 'Romano3075', 'lucianaromano@gmail.com', '0000-00-00 00:00:00'),
+    (2, 'Clarimel1', 'Jolie04p', 'claranqn@gmail.com', '0000-00-00 00:00:00'),
+    (3, 'BraianL16', 'Canela1686', 'ledantesbr@gmail.com', '0000-00-00 00:00:00');
 -- --------------------------------------------------------
 
 --
@@ -168,6 +175,8 @@ CREATE TABLE `usuariorol` (
   `idrol` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTOusuariorol (idusuario, idrol)
+VALUES (1, 3), (2, 2), (3, 1);
 --
 -- Índices para tablas volcadas
 --
