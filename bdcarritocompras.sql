@@ -175,7 +175,7 @@ CREATE TABLE `usuariorol` (
   `idrol` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTOusuariorol (idusuario, idrol)
+INSERT INTO usuariorol (idusuario, idrol)
 VALUES (1, 3), (2, 2), (3, 1);
 --
 -- Índices para tablas volcadas
