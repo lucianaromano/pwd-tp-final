@@ -155,7 +155,7 @@ class Usuario
         return $resp;
     }
 
-    public function listar($parametro = "")
+    public static function listar($parametro = "")
     {
         $arreglo = array();
         $db = new BaseDatos();

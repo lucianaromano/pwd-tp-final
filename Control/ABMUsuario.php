@@ -39,16 +39,18 @@ class ABMUsuario
      */
     private function cargarObjeto($param)
     {
-        $obj = null;
-
-        if (
-            array_key_exists('idusuario', $param)  and array_key_exists('usnombre', $param) and array_key_exists('uspass', $param)
-            and array_key_exists('usmail', $param) and array_key_exists('usdeshabilitado', $param)
-        ) {
-            $obj = new Usuario();
-            $obj->setear($param['idusuario'], $param['usnombre'], $param['uspass'], $param['usmail'], $param['usdeshabilitado']);
+        $objUs = null;
+        if (array_key_exists('usnombre', $param) && array_key_exists('usmail', $param) && array_key_exists('uspass', $param) ) {
+            $objUs = new usuario();
+            $objUs->setear(
+                '',
+                $param['usnombre'],
+                $param['uspass'],
+                $param['usmail'],
+                ''
+            );
         }
-        return $obj;
+        return $objUs;
     }
 
     /**
@@ -85,10 +87,9 @@ class ABMUsuario
     public function alta($param)
     {
         $resp = false;
-        $param['idusuario'] = null;
-        $elObjtTabla = $this->cargarObjeto($param);
-        //        verEstructura($elObjtTabla);
-        if ($elObjtTabla != null and $elObjtTabla->insertar()) {
+        $objUsuario = $this->cargarObjeto($param);
+
+        if ($objUsuario->insertar()) {
             $resp = true;
         }
         return $resp;
@@ -189,9 +190,7 @@ class ABMUsuario
             if (isset($param['usdeshabilitado']))
                 $where .= " and usdeshabilitado ='" . $param['usdeshabilitado'] . "'";
         }
-        $obj = new Usuario();
-        $arreglo = $obj->listar($where);
-        //echo "Van ".count($arreglo);
+        $arreglo = usuario::listar($where);
         return $arreglo;
     }
 }

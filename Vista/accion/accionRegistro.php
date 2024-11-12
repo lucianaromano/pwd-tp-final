@@ -18,7 +18,7 @@ if (!$exito) {
 
 $nuevoUsuario = $abmUsuario->buscar($datos);
 $datosUsRol = [
-    'idusuario' => $nuevoUsuario[0]->getIdusuario(),
+    'idusuario' => $nuevoUsuario[0]->getidusuario(),
     'idrol' => 1,
 ];
 $abmUsuarioRol = new ABMUsuarioRol();
@@ -27,6 +27,7 @@ $abmUsuarioRol->alta($datosUsRol);
 $sesion = new session();
 $sesion->iniciar($datos['usnombre'], $datos['uspass']);
 list($inicioSesion, $error) = $sesion->validar();
+
 if (!$inicioSesion) {
     $sesion->cerrar();
     header('Location: ../login/registro.php?message=' . urlencode($error));
