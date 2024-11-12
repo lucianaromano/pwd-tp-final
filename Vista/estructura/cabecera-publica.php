@@ -21,7 +21,7 @@
                         <a class="nav-link" href="/pwd-tp-final/Vista/login/login.php">Iniciar Sesion </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Registrarse</a>
+                        <a class="nav-link" href="/pwd-tp-final/Vista/login/registro.php">Registrarse</a>
                     </li>
                 </ul>
             </div>

@@ -64,7 +64,7 @@ $datos = data_submitted();
                         <button class="btn btn-success" type="submit">Iniciar Sesion</button>
                     </div>
                     <div class="text-center">
-                        <p class="mb-0 text-muted">¿No tenés una cuenta? <a href="signin.php">Click Aqui!</a></p>
+                        <p class="mb-0 text-muted">¿No tenés una cuenta? <a href="registro.php">Click Aqui!</a></p>
                     </div>
                 </form>
             </div>
