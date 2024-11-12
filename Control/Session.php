@@ -2,10 +2,11 @@
 class Session
 {
 
+    // Constructor
     public function __construct()
     {
-        if (!session_start()) {
-        } else {
+        if (!isset($_SESSION)) {
+            session_start();
         }
     }
 
@@ -47,15 +48,11 @@ class Session
      */
     public function activa()
     {
-        $resp = false;
-        if (php_sapi_name() !== 'cli') {
-            if (version_compare(phpversion(), '5.4.0', '>=')) {
-                $resp = session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
-            } else {
-                $resp = session_id() === '' ? FALSE : TRUE;
-            }
+        $activa = false;
+        if (isset($_SESSION['usnombre'])) {
+            $activa = true;
         }
-        return $resp;
+        return $activa;
     }
 
     /**
