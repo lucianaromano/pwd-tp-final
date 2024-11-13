@@ -16,7 +16,8 @@ class ABMUsuarioRol
             }
         }
 
-        $arreglo = UsuarioRol::listar($where);
+        $rolUsuario = new UsuarioRol();
+        $arreglo = $rolUsuario->listar($where);
 
         return $arreglo;
     }

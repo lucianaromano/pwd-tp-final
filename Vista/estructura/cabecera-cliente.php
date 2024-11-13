@@ -6,33 +6,40 @@ if (!$resp) {
     header("Location: $PROJECT_PATH/vista/login");
 }
 
-// TODO: verificar que el usuario tenga el rol de cliente
-
+if (!$session->esAdministrador() && !$session->esCliente()) {
+    header("Location: $PROJECT_PATH/vista");
+}
 ?>
 
 <header class="position-sticky top-0 shadow mb-3">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000; padding: 30px 160px;">
         <div class="container-fluid">
-            <h1> Angel Wings Jewelry</h1>
+            <a class="nav-link" href="/pwd-tp-final/index.php">
+                <div class="d-flex align-items-center">
+                    <img class="ms-auto me-3" style="height: 80px; width: auto;" src="/pwd-tp-final/angelwings.png" alt="logo Angel Wings">
+                    <h3 class="mb-0 text-white">Angel Wings Jewelry</h3>
+                </div>
+            </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php">Inicio</a>
+                        <a class="nav-link" href="/pwd-tp-final/Vista/home">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Productos</a>
+                        <a class="nav-link" href="/pwd-tp-final/Vista/productos">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Iniciar Sesion </a>
+                        <a class="nav-link" href="/pwd-tp-final/Vista/carrito">Carrito</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Registrarse</a>
+                        <a class="nav-link" href="/pwd-tp-final/Vista/accion/accionLogout.php">Cerrar Sesión</a>
                     </li>
+
                 </ul>
-                <img class="ms-auto me-3" style="height: 35px; width: auto;" src="/angelwings.ico" alt="<logo Angel Wings">
             </div>
         </div>
     </nav>

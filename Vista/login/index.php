@@ -1,5 +1,13 @@
 <?php include_once("../../configuracion.php");
 $datos = data_submitted();
+
+$sesion = new Session();
+$homeUrl = "$PROJECT_PATH/index.php";
+
+if ($sesion->activa()) {
+    header("Location: $homeUrl");
+    exit();
+} 
 ?>
 
 <!DOCTYPE html>
@@ -10,8 +18,7 @@ $datos = data_submitted();
     <title>Login</title>
 
     <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <?php include_once("../estructura/bootstrap.php");?> 
 
     <link rel="stylesheet" href="../css/estilos.css">
 </head>
@@ -64,7 +71,7 @@ $datos = data_submitted();
                         <button class="btn btn-success" type="submit">Iniciar Sesion</button>
                     </div>
                     <div class="text-center">
-                        <p class="mb-0 text-muted">¿No tenés una cuenta? <a href="registro.php">Click Aqui!</a></p>
+                        <p class="mb-0 text-muted">¿No tenés una cuenta? <a href="../registro">Click Aqui!</a></p>
                     </div>
                 </form>
             </div>

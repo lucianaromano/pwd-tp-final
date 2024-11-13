@@ -2,7 +2,7 @@
 include_once '../../configuracion.php';
 $sesion = new session();
 if ($sesion->activa()) {
-    header('Location: ../login/login.php?message=' . urlencode("Ya hay una sesion activa"));
+    header("Location: $PROJECT_PATH/Vista/home");
     exit;
 }
 ?>
@@ -14,8 +14,7 @@ if ($sesion->activa()) {
     <title>Registro de Usuario</title>
 
     <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <?php include_once("../estructura/bootstrap.php");?> 
 
     <link rel="stylesheet" href="../css/estilos.css">
 

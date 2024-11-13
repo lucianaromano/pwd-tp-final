@@ -1,25 +1,25 @@
 <?php
 include_once '../../configuracion.php';
+$datos = data_submitted();
 
-$sesion = new session();
+$sesion = new Session();
+$loginUrl = "$PROJECT_PATH/Vista/login/login.php";
+$homeUrl = "$PROJECT_PATH/index.php";
 
-if (!$sesion->activa()) {
-    $datos = data_submitted();
-
-    $controlUsuario = new controlUsuario();
-    $respuesta = $controlUsuario->login($datos);
-
-    if ($respuesta['messageErr'] != "?messageErr=") {
-        $message = $respuesta['messageErr'];
-        header('Location: ../login/login.php' . $message);
-        exit;
-    } else {
-        $message = $respuesta['messageOk'];
-        header('Location: ../index.php' . $message);
-        exit;
-    }
-} else {
-    header('Location: ../login/login.php?messageErr=' . urlencode("Sesión ya iniciada"));
-    exit;
+if ($sesion->activa()) {
+    header("Location: $homeUrl");
+    exit();
 }
-?>
+
+if (!isset($datos['usnombre']) || !isset($datos['uspass'])) {
+    header("Location: $loginUrl?messageErr=" . urlencode("Usuario y/o contraseña incorrectos"));
+    exit();
+}
+
+$inicioSesion = $sesion->iniciar($datos['usnombre'], $datos['uspass']);
+
+if ($inicioSesion) {
+    header("Location: $homeUrl");
+} else {
+    header("Location: $loginUrl?messageErr=" . urlencode("Usuario y/o contraseña incorrectos"));
+}
