@@ -143,6 +143,10 @@ CREATE TABLE `rol` (
   `rodescripcion` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `rol`
+--
+
 INSERT INTO rol (idrol, rodescripcion)
 VALUES (1, 'cliente'), (2, 'deposito'),(3, 'admin');
 -- --------------------------------------------------------
@@ -159,11 +163,19 @@ CREATE TABLE `usuario` (
   `usdeshabilitado` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
 INSERT INTO usuario ( idusuario, usnombre, uspass, usmail, usdeshabilitado)
 VALUES
-    (1, 'Luciana1', 'Romano3075', 'lucianaromano@gmail.com', '0000-00-00 00:00:00'),
-    (2, 'Clarimel1', 'Jolie04p', 'claranqn@gmail.com', '0000-00-00 00:00:00'),
-    (3, 'BraianL16', 'Canela1686', 'ledantesbr@gmail.com', '0000-00-00 00:00:00');
+    (1, 'Administrador', 'Administrador123', 'admin@gmail.com', '0000-00-00 00:00:00');
+    (2, 'Luciana1', 'Romano3075', 'lucianaromano@gmail.com', '0000-00-00 00:00:00'),
+    (3, 'Clarimel1', 'Jolie04p', 'claranqn@gmail.com', '0000-00-00 00:00:00'),
+    (4, 'BraianL16', 'Canela1686', 'ledantesbr@gmail.com', '0000-00-00 00:00:00');
+    (5, 'Ejemplo', 'Ejemplo10', 'ejemplo@gmail.com', '2024-11-13 15:58:03');
+    
+    
 -- --------------------------------------------------------
 
 --
@@ -175,8 +187,15 @@ CREATE TABLE `usuariorol` (
   `idrol` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO usuariorol (idusuario, idrol)
-VALUES (1, 3), (2, 2), (3, 1);
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO usuariorol (idusuario, idrol) VALUES 
+  (2, 4), 
+  (3, 3), 
+  (4, 2);
+
 --
 -- Índices para tablas volcadas
 --
@@ -277,7 +296,7 @@ ALTER TABLE `compraestado`
 -- AUTO_INCREMENT de la tabla `compraitem`
 --
 ALTER TABLE `compraitem`
-  MODIFY `idcompraitem` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idcompraitem` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `menu`
